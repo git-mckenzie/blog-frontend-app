@@ -4,15 +4,17 @@ import Home from "../views/Home.vue";
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
+import PostsIndex from "../views/PostsIndex.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   { path: "/", name: "Home", component: Home, },
   { path: "/about", name: "About", component: () => import("../views/About.vue"), },
-  { path: "/signup", name: "Signup", component: Signup,},
+  { path: "/signup", name: "Signup", component: Signup },
   { path: "/login", name: "Login", component: Login },
   { path: "/logout", name: "Logout", component: Logout },
+  { path: "/posts", name: "PostsIndex", component: PostsIndex },
 ];
 
 const router = new VueRouter({
