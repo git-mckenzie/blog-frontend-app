@@ -3,7 +3,10 @@
     <div class="container">
       <h2>{{ post.title }}</h2>
       <p>{{ post.body }}</p>
-      <router-link v-bind:to="`/posts/${post.id}/edit`"><button>Edit Post</button></router-link>
+      <img v-bind:src="post.image" alt="post.title" />
+      <p>
+        <router-link v-bind:to="`/posts/${post.id}/edit`"><button>Edit Post</button></router-link>
+      </p>
       <router-link to="/posts">Back to all posts</router-link>
     </div>
   </div>
@@ -11,6 +14,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -19,8 +23,8 @@ export default {
     };
   },
   created: function () {
-    axios.get("/posts" + this.$route.params.id).then((response) => {
-      this.post = response.data
+    axios.get("http://localhost:3000/posts/" + this.$route.params.id).then((response) => {
+      this.post = response.data;
     });
   },
 };

@@ -17,13 +17,16 @@
         <label>Image:</label>
         <input type="text" v-model="currentPostParams.image" />
       </div>
+
       <input type="submit" value="Submit" />
+      <button v-on:click="destroyPost()">Delete</button>
     </form>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -42,6 +45,12 @@ export default {
       axios.patch(`/posts/${this.$route.params.id}`, this.currentPostParams).then((response) => {
         console.log(response.data);
         this.$router.push(`/posts/${response.data.id}`);
+      });
+    },
+    destroyPost: function () {
+      axios.delete(`/posts/${this.$route.params.id}`).then((response) => {
+        console.log("Post deleted", response.data);
+        this.$router.push("/posts");
       });
     },
   },

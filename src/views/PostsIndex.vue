@@ -1,23 +1,40 @@
 <template>
-  <div class="postsindex">
-    <div v-for="post in posts" :key="post.id">
-      <router-link v-bind:to="`/posts/${posts.id}`">
+  <div class="posts-index">
+    <div class="card-deck">
+      <div class="card">
+        Search by title:
+        <input v-model="titleFilter" />
+        <div
+          v-for="post in filterBy(posts, titleFilter, 'title', 'body')"
+          :key="post.id"
+          v-bind:class="{ selected: post === currentPost }"
+          v-on:click="currentPost = post"
+        ></div>
+      </div>
+    </div>
+
+    <!-- <div v-for="post in posts" :key="post.id">
       <h2>Title: {{ post.title }}</h2>
       <p>Body: {{ post.body }}</p>
       <img v-bind:src="post.image" alt="post.title" />
-      <!-- <button>More info!</button> -->
-      </router-link>
-    </div>
+      <p><router-link v-bind:to="`/posts/${posts.id}`">Link to post</router-link></p>
+      </div> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
+
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function () {
     return {
       message: "Here are posts!",
       posts: [],
+      newPostParams: {},
+      currentPost: {},
+      titleFilter: "",
     };
   },
   created: function () {

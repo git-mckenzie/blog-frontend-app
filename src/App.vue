@@ -19,11 +19,11 @@
           <li class="nav-item active">
             <a class="nav-link" href="/">
               Home
-              <!-- <span class="sr-only">(current)</span> -->
+              <span class="sr-only"></span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/posts">Posts</a>
+            <a class="nav-link" href="/posts">All Posts</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/posts/new">New Post</a>
@@ -78,6 +78,23 @@
   </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    isLoggedIn: function () {
+      if (localStorage.getItem("jwt")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
+    },
+  },
+};
+</script>
+
 <style>
 body {
   background-image: url("./assets/double-bubble-dark.png");
@@ -122,44 +139,4 @@ pre {
   font-weight: 400;
   line-height: 18.5714px;
 }
-/* h1 {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 700;
-  line-height: 26.4px;
-}
-h3 {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 700;
-  line-height: 15.4px;
-}
-p {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 20px;
-}
-blockquote {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 21px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 30px;
-}
-pre {
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 13px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 18.5714px;
-} */
 </style>

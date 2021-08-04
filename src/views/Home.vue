@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div>
+    <!-- <div>
       <h1>New Post</h1>
       Title:
       <input type="text" v-model="newPostTitle" />
@@ -31,7 +31,7 @@
           <button v-on:click="destroyPost(post)">Destroy</button>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
